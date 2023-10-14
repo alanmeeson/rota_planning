@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+left to right direction
+
+actor Doctor
+
+actor "Rota Admin" as admin
+
+actor HR
+
+usecase "1. Enter Preferences" as uc1
+
+usecase "2. View Resulting Rota" as uc2
+
+usecase "3. Define Template" as uc3
+
+usecase "4. Review Candidate Solution Rotas" as uc4
+
+usecase "5. Manually Resolve Conflicts" as uc5
+
+Doctor --> uc1
+Doctor --> uc2
+
+admin --> uc3
+admin --> uc4
+admin --> uc5
+
+HR --> uc2
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object Shift {
+    + shift_id: uuid
+    + type: ShiftType
+    + start_time: datetime
+    + end_time: datetime
+    + minimum_staffing: int
+    + maximum_staffing: Union[int, None]
+    + preference: List[Preference]
+}
+
+enum ShiftType {
+    + Standard
+    + Night
+    + Oncall
+    + ZeroDay
+    + Off
+}
+
+object ShiftTemplate {
+    + type: ShiftType
+    + start_time: time with day?
+    + end_time: time with day?
+    + minimum_staffing: int
+    + maximum_staffing: Union[int, None]
+}
+
+object Doctor {
+    + doctor_id
+    + Name
+}
+
+object Preference {
+    + day: date
+    + preference: int
+    + doctor: Doctor
+}
+
+object RotaTemplate {
+    + shifts: List[ShiftTemplate]
+    ---
+    + produce_rota(num_weeks: int)
+    ---
+    One week long, and we repeat it
+}
+
+object Rota {
+    + shifts : List[Shift]
+    + assignments: dict[shift_id, List[Doctor]]
+    ---
+    Actual completed rota
+    Which doctor is doing what shift
+    for many shifts
+}
+
+Shift::type -|> ShiftType
+Doctor "1" -- "*" Preference
+Preference "*" -- "1" Shift
+RotaTemplate --> Rota : produces
+
+ShiftTemplate -- RotaTemplate
+Rota -- Shift
+
+@enduml
