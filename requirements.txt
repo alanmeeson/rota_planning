@@ -1,0 +1,7 @@
+jupyterlab
+pyprojroot
+tqdm
+matplotlib
+numpy
+scipy
+scikit-learn
