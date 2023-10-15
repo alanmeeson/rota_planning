@@ -26,6 +26,9 @@ class Shift:
     def __str__(self):
         return f"{self.type} Shift: {self.start_time} to {self.end_time}"
 
+    def shift_day(self):
+        return self.start_time.isoweekday()
+
     def time_between(self, shift) -> float:
         """Calculates time between two shifts in hours"""
 
@@ -44,6 +47,9 @@ class Shift:
         # As a hack, just check if the start or end is on a weekend day.
         # TODO: consider edge cases
         return (self.start_time.isoweekday() in {6, 7}) or (self.end_time.isoweekday() in {6, 7})
+
+    def is_oncall_shift(self) -> bool:
+        return self.type == ShiftType.ONCALL
 
     def can_take_leave(self) -> bool:
         return self.type in {ShiftType.ZERO, ShiftType.STANDARD}
