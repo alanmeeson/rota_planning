@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 from copy import deepcopy
 
 
@@ -33,8 +33,13 @@ class Solution:
             if assigned_doctor_id is None
         ]
 
-    def assign(self, doctor: int, shift: int):
+    def assign(self, doctor: int, shift: Union[int, List[int]]):
         """Generate a new partial solution by assigning a doctor to a shift"""
         new_assignments = deepcopy(self.assignments)
-        new_assignments[shift] = doctor
+        if isinstance(shift, list):
+            for s in shift:
+                new_assignments[s] = doctor
+        else:
+            new_assignments[shift] = doctor
+
         return Solution(new_assignments)

@@ -1,6 +1,6 @@
 from typing import List
 from datetime import date, datetime
-
+from collections import Counter
 from rota_planner.utils import calc_overlap
 from rota_planner.shift import Shift, min_time_between_shifts, may_follow_night_shift, max_hours_in_period
 
@@ -9,6 +9,7 @@ class Preference:
     """A Day the Doctor wants to be not working on."""
     def __init__(self, day: date):
         """Create a preference from a day."""
+        self.date = day
         self.start_time = datetime.combine(day, datetime.min.time())
         self.end_time = datetime.combine(day, datetime.max.time())
 
@@ -63,6 +64,7 @@ class Doctor:
 
         # Maximum of 72 hours in any 168 hour period (ie: 1 week)
         valid = valid and (max_hours_in_period(shifts, 7*24) <= 72)
+
         # Maximum of 48 hours per week on average
         valid = valid and ((max_hours_in_period(shifts, 8*7*24) / 8) <= 48)
 
@@ -80,3 +82,6 @@ class Doctor:
         num_clashes = len(clashes)
 
         return num_clashes / len(self.preferences)
+
+
+

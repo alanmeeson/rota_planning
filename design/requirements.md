@@ -19,7 +19,7 @@ From midnight to midnight.
 
 ### Night
 46 hours of rest is required after any number of night shifts, even 1
-Night is defined as 21:00 - 07:00 am
+//Night is defined as 21:00 - 07:00 am
 Bulk of hours fall within the night hours.
 Can start or end earlier.
 Max 4 consecutive nights.
@@ -42,11 +42,17 @@ Have a minimum and maximum staffing level
 
 - max 48 hours average over 8 weeks.
 - max 72 hours in any 168 hour period.
-- Max shift length is 13 hours.
+- Max shift length is 13 hours. b n
 - Max of 7 consecutive shift
   - At least 48 hours of rest following final shift
 - Max frequency of 1 in 3 weekends worked
   - any shift or on call where work falls between 00:01 Saturday & 23:59 Sunday
+
+- Minimum number of hours:
+  - 40 hour working week, averaged over 8 weeks
+  - Made of time between 07:00 and 21:00
+
+- min 11 hours between shifts.
 
 ## Stretch goals
 

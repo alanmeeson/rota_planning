@@ -20,6 +20,7 @@ class Shift:
 
     def __init__(self, shift_type: ShiftType, start_time: datetime, end_time: datetime):
         self.type = shift_type
+        self.date = start_time.date()
         self.start_time = start_time
         self.end_time = end_time
 
